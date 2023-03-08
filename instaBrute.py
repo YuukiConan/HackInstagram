@@ -101,14 +101,13 @@ def main():
 	if (options.dictionary == False):
 		print('You have to set a valid path for the passwords dictionary')
 		exit()
-        if options.proxy:
-            with open('proxy.yaml', 'r') as f:
+	if options.proxy:
+        	with open('proxy.yaml', 'r') as f:
                 # TODO For now it just takes the first proxy config
-                config = yaml.load(f).values()[0]
-                for k, v in config.iteritems():
-                    getattr(profile, 'set_preference')(k,v)
-                profile.update_preferences()
-
+  		config = yaml.load(f).values()[0]
+  		for k, v in config.iteritems():
+  			getattr(profile, 'set_preference')(k,v)
+		profile.update_preferences()
 
 	try:
 		f = open(options.dictionary,'r')
