@@ -103,7 +103,6 @@ def main():
 		exit()
 	if options.proxy:
         	with open('proxy.yaml', 'r') as f:
-                # TODO For now it just takes the first proxy config
 			config = yaml.load(f).values()[0]
 		for k, v in config.iteritems():
 			getattr(profile, 'set_preference')(k,v)
