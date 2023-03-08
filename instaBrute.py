@@ -81,7 +81,7 @@ def main():
 	parser.add_option('-d', '--dictionary', action="store", dest="dictionary", help="File containing passwords", default=False)
 	parser.add_option('-u', '--username', action="store", dest="username", help="A valid username", default=False)
 	parser.add_option('-t', '--time', action="store", dest="delay", help="delay in seconds. Use this option based on your connection speed", default=True)
-        parser.add_option('-p', '--proxy', action='store_true', default=False)
+	parser.add_option('-p', '--proxy', action='store_true', default=False)
 	options, args = parser.parse_args()
 
 	global driver
